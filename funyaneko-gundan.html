@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ふにゃねこ軍団 公式サイト</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Antique+B1:wght@400&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#120c10;
+    --ink2:#1c1216;
+    --cream:#f3e9df;
+    --claw-red:#c4233a;
+    --neon:#ff4fa3;
+    --gold:#d8b673;
+    --line:rgba(243,233,223,0.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--cream);
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--neon);color:var(--ink);}
+
+  a{color:inherit;}
+
+  .scratch{
+    font-family:'Caveat',cursive;
+    color:var(--neon);
+  }
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 6vw;
+    background:linear-gradient(to bottom, rgba(18,12,16,0.95), rgba(18,12,16,0));
+    backdrop-filter:blur(2px);
+  }
+  .nav-logo{
+    font-family:'Shippori Antique B1', sans-serif;
+    font-size:1.1rem;
+    letter-spacing:0.08em;
+  }
+  .nav-links{
+    display:flex;gap:28px;
+    font-size:0.82rem;
+    letter-spacing:0.05em;
+  }
+  .nav-links a{
+    text-decoration:none;
+    opacity:0.75;
+    transition:opacity .2s, color .2s;
+    border-bottom:1px solid transparent;
+    padding-bottom:2px;
+  }
+  .nav-links a:hover{opacity:1;color:var(--neon);border-color:var(--neon);}
+  .nav-links{display:none;}
+  @media(min-width:760px){.nav-links{display:flex;}}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;
+    padding:140px 6vw 80px;
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(196,35,58,0.35), transparent 55%),
+      radial-gradient(ellipse at 85% 85%, rgba(255,79,163,0.25), transparent 50%),
+      var(--ink);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 38px, rgba(243,233,223,0.025) 39px),
+      repeating-linear-gradient(90deg, transparent, transparent 38px, rgba(243,233,223,0.025) 39px);
+    pointer-events:none;
+  }
+  .hero-eyebrow{
+    font-size:0.78rem;
+    letter-spacing:0.35em;
+    color:var(--gold);
+    text-transform:uppercase;
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-family:'Shippori Antique B1', sans-serif;
+    font-size:clamp(3rem, 13vw, 7.5rem);
+    line-height:1;
+    letter-spacing:0.02em;
+    color:var(--cream);
+    text-shadow:0 0 40px rgba(255,79,163,0.35);
+    position:relative;
+    z-index:1;
+  }
+  .hero h1 .claw{
+    display:inline-block;
+    color:var(--claw-red);
+    transform:rotate(-3deg);
+  }
+  .hero-sub{
+    margin-top:24px;
+    font-size:clamp(1rem,2.4vw,1.3rem);
+    color:rgba(243,233,223,0.85);
+    max-width:560px;
+    line-height:1.9;
+  }
+  .hero-meta{
+    margin-top:38px;
+    display:flex;gap:14px;flex-wrap:wrap;justify-content:center;
+    font-size:0.85rem;
+  }
+  .pill{
+    border:1px solid var(--line);
+    padding:8px 18px;
+    border-radius:999px;
+    color:var(--cream);
+    background:rgba(243,233,223,0.04);
+  }
+  .pill b{color:var(--neon);font-weight:700;}
+  .scroll-hint{
+    margin-top:60px;
+    font-size:0.7rem;
+    letter-spacing:0.3em;
+    color:rgba(243,233,223,0.4);
+    animation:bob 2.4s ease-in-out infinite;
+  }
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}
+
+  /* ---------- section shell ---------- */
+  section{padding:110px 6vw;position:relative;}
+  .section-head{
+    text-align:center;
+    margin-bottom:70px;
+  }
+  .section-head .scratch{font-size:clamp(1.4rem,3.6vw,2rem);display:block;margin-bottom:6px;}
+  .section-head h2{
+    font-family:'Shippori Antique B1', sans-serif;
+    font-size:clamp(1.9rem,5vw,3rem);
+    letter-spacing:0.04em;
+  }
+  .divider{
+    width:64px;height:2px;background:var(--claw-red);
+    margin:26px auto 0;
+    position:relative;
+  }
+  .divider::after{
+    content:"🐾";
+    position:absolute;left:50%;top:-13px;transform:translateX(-50%);
+    font-size:0.9rem;
+  }
+
+  /* ---------- About ---------- */
+  .about{
+    background:var(--ink2);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .about-grid{
+    max-width:980px;margin:0 auto;
+    display:grid;grid-template-columns:1fr;gap:30px;
+    text-align:center;
+  }
+  .about-grid p{
+    font-size:1.05rem;line-height:2.1;
+    color:rgba(243,233,223,0.85);
+    max-width:680px;margin:0 auto;
+  }
+  .about-stats{
+    display:flex;justify-content:center;gap:50px;flex-wrap:wrap;
+    margin-top:50px;
+  }
+  .stat{text-align:center;}
+  .stat .num{
+    font-family:'Shippori Antique B1', sans-serif;
+    font-size:2.6rem;color:var(--neon);
+    display:block;
+  }
+  .stat .label{font-size:0.8rem;color:rgba(243,233,223,0.6);letter-spacing:0.08em;}
+
+  /* ---------- Members ---------- */
+  .members{max-width:1140px;margin:0 auto;}
+  .member{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:0;
+    margin-bottom:80px;
+    border:1px solid var(--line);
+    background:rgba(243,233,223,0.02);
+    overflow:hidden;
+  }
+  @media(min-width:840px){
+    .member{grid-template-columns:0.85fr 1.15fr;}
+    .member.rev{grid-template-columns:1.15fr 0.85fr;}
+    .member.rev .member-photo{order:2;}
+  }
+  .member-photo{
+    position:relative;
+    min-height:360px;
+    overflow:hidden;
+    background:#000;
+  }
+  .member-photo img{
+    width:100%;height:100%;object-fit:cover;
+    display:block;
+    filter:saturate(1.05) contrast(1.05);
+    transition:transform .6s ease;
+  }
+  .member:hover .member-photo img{transform:scale(1.04);}
+  .member-photo .tag{
+    position:absolute;bottom:18px;left:18px;
+    font-family:'Caveat',cursive;
+    font-size:1.6rem;color:var(--neon);
+    text-shadow:0 2px 10px rgba(0,0,0,0.8);
+  }
+  .member-info{
+    padding:46px 42px;
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .member-role{
+    font-size:0.78rem;letter-spacing:0.2em;color:var(--gold);
+    text-transform:uppercase;margin-bottom:10px;
+  }
+  .member-name{
+    font-family:'Shippori Antique B1', sans-serif;
+    font-size:clamp(2.2rem,4.5vw,3rem);
+    margin-bottom:6px;
+  }
+  .member-name small{
+    display:block;font-family:'Zen Kaku Gothic New';
+    font-size:0.95rem;font-weight:400;color:rgba(243,233,223,0.55);
+    letter-spacing:0.05em;margin-top:6px;
+  }
+  .member-skills{
+    display:flex;gap:8px;flex-wrap:wrap;
+    margin:18px 0 22px;
+  }
+  .member-skills span{
+    font-size:0.75rem;
+    border:1px solid var(--line);
+    padding:5px 12px;border-radius:999px;
+    color:rgba(243,233,223,0.8);
+  }
+  .member-info p{
+    font-size:0.98rem;line-height:2;
+    color:rgba(243,233,223,0.82);
+    margin-bottom:26px;
+  }
+  .line-btn{
+    display:inline-flex;align-items:center;gap:10px;
+    align-self:flex-start;
+    background:var(--claw-red);
+    color:var(--cream);
+    text-decoration:none;
+    padding:13px 26px;
+    font-size:0.88rem;font-weight:700;
+    letter-spacing:0.04em;
+    border-radius:999px;
+    transition:background .2s, transform .2s;
+  }
+  .line-btn:hover{background:var(--neon);transform:translateY(-2px);}
+
+  /* ---------- Activities ---------- */
+  .activities{background:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .act-grid{
+    max-width:1000px;margin:0 auto;
+    display:grid;grid-template-columns:1fr;gap:24px;
+  }
+  @media(min-width:700px){.act-grid{grid-template-columns:1fr 1fr;}}
+  .act-card{
+    border:1px solid var(--line);
+    padding:36px 32px;
+    background:rgba(243,233,223,0.02);
+  }
+  .act-card .loc{
+    font-size:0.78rem;letter-spacing:0.15em;color:var(--neon);
+    margin-bottom:10px;text-transform:uppercase;
+  }
+  .act-card h3{
+    font-family:'Shippori Antique B1', sans-serif;
+    font-size:1.5rem;margin-bottom:14px;
+  }
+  .act-card p{font-size:0.95rem;line-height:1.9;color:rgba(243,233,223,0.78);}
+  .base-bar{
+    max-width:1000px;margin:50px auto 0;
+    display:flex;justify-content:center;gap:18px;flex-wrap:wrap;
+  }
+
+  /* ---------- Upcoming ---------- */
+  .upcoming{max-width:760px;margin:0 auto;text-align:center;}
+  .upcoming .frame{
+    border:1px solid var(--claw-red);
+    padding:50px 36px;
+    position:relative;
+    background:radial-gradient(ellipse at top, rgba(196,35,58,0.12), transparent 60%);
+  }
+  .upcoming .frame::before{
+    content:"NEXT MISSION";
+    position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+    background:var(--ink);
+    padding:0 16px;
+    font-size:0.72rem;letter-spacing:0.3em;color:var(--gold);
+  }
+  .upcoming h3{
+    font-family:'Shippori Antique B1', sans-serif;
+    font-size:clamp(1.5rem,3.6vw,2.1rem);
+    margin-bottom:20px;
+  }
+  .upcoming p{font-size:1rem;line-height:2;color:rgba(243,233,223,0.85);margin-bottom:14px;}
+  .upcoming .song{
+    display:inline-block;
+    margin-top:14px;
+    font-family:'Caveat',cursive;
+    font-size:1.8rem;color:var(--neon);
+    border-bottom:1px dashed var(--neon);
+    padding-bottom:2px;
+  }
+
+  /* ---------- SNS ---------- */
+  .sns{background:var(--ink2);border-top:1px solid var(--line);}
+  .sns-grid{
+    max-width:760px;margin:0 auto;
+    display:grid;grid-template-columns:1fr;gap:14px;
+  }
+  @media(min-width:600px){.sns-grid{grid-template-columns:1fr 1fr;}}
+  .sns-link{
+    display:flex;align-items:center;justify-content:space-between;
+    border:1px solid var(--line);
+    padding:20px 26px;
+    text-decoration:none;
+    font-size:0.95rem;
+    transition:border-color .2s, background .2s;
+  }
+  .sns-link:hover{border-color:var(--neon);background:rgba(255,79,163,0.06);}
+  .sns-link .plat{font-weight:700;letter-spacing:0.04em;}
+  .sns-link .arrow{color:var(--neon);font-size:1.1rem;}
+
+  footer{
+    text-align:center;
+    padding:60px 6vw 50px;
+    font-size:0.78rem;
+    color:rgba(243,233,223,0.4);
+    letter-spacing:0.05em;
+  }
+  footer .scratch{display:block;font-size:1.3rem;margin-bottom:14px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">ふにゃねこ軍団</div>
+  <div class="nav-links">
+    <a href="#about">ABOUT</a>
+    <a href="#members">MEMBERS</a>
+    <a href="#activities">ACTIVITIES</a>
+    <a href="#upcoming">NEXT</a>
+    <a href="#sns">SNS</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-eyebrow">新宿 × 池袋発 メンズアイドルユニット</div>
+  <h1>ふにゃ<span class="claw">にゃ</span>ねこ軍団</h1>
+  <p class="hero-sub">
+    気まぐれで、でも本気。<br>
+    歌舞伎町の夜から鳴き出した、たった2匹の野良アイドル軍団。
+  </p>
+  <div class="hero-meta">
+    <span class="pill">活動拠点 <b>新宿 / 池袋</b></span>
+    <span class="pill">メンバー <b>2名</b></span>
+    <span class="pill">活動内容 <b>ライブ / DJ</b></span>
+  </div>
+  <div class="scroll-hint">SCROLL ▾</div>
+</header>
+
+<section class="about" id="about">
+  <div class="section-head">
+    <span class="scratch">about us</span>
+    <h2>軍団、結成。</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="about-grid">
+    <p>
+      ふにゃねこ軍団は、新宿と池袋を拠点に活動するメンズアイドルユニット。
+      普段はゆるく、ふにゃっと。でもステージに立てば爪を立てる――そんな緩急が持ち味です。
+      ボーカルとビジュアル、正反対の2匹が組むことで生まれる化学反応をライブハウスやクラブのフロアで体感してください。
+      路地裏の片隅から始まった軍団は、今夜もどこかの街で鳴いています。
+    </p>
+    <div class="about-stats">
+      <div class="stat"><span class="num">02</span><span class="label">MEMBERS</span></div>
+      <div class="stat"><span class="num">2</span><span class="label">活動エリア</span></div>
+      <div class="stat"><span class="num">∞</span><span class="label">ふにゃ度</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="members" id="members">
+  <div class="section-head">
+    <span class="scratch">members</span>
+    <h2>2匹のねこたち</h2>
+    <div class="divider"></div>
+  </div>
+
+  <div class="member">
+    <div class="member-photo">
+      <img src="shu.jpg" alt="しゅう">
+      <div class="tag">Vocal</div>
+    </div>
+    <div class="member-info">
+      <div class="member-role">Vocal / Guitar</div>
+      <div class="member-name">しゅう<small>Shu</small></div>
+      <div class="member-skills">
+        <span>早稲田卒</span><span>バイリンガル</span><span>ギター</span><span>元ITエンジニア</span>
+      </div>
+      <p>
+        早稲田大学卒のバイリンガルで、英語も自在に操る軍団の頭脳派。
+        ギターを携え、ユニットのボーカルを担当する。
+        前職はITエンジニアという異色の経歴を持つが、ひょんなことからアイドルの道へ。
+        みんなに夢とドキドキなエンターテインメントを届けることをモットーに、今日も歌う。
+      </p>
+      <a class="line-btn" href="https://line.me/ti/p/KAtIGZJ_hw" target="_blank" rel="noopener">しゅうとLINEでつながる →</a>
+    </div>
+  </div>
+
+  <div class="member rev">
+    <div class="member-photo">
+      <img src="satosix.jpg" alt="さとしっくす">
+      <div class="tag">Visual</div>
+    </div>
+    <div class="member-info">
+      <div class="member-role">Visual / Comedy</div>
+      <div class="member-name">さとしっくす<small>Satosix</small></div>
+      <div class="member-skills">
+        <span>ダンス</span><span>ピアノ</span><span>フルート</span><span>ギャグセンMAX</span>
+      </div>
+      <p>
+        ダンス・ピアノ・フルートまでこなすマルチプレイヤー。
+        軍団のビジュアル＆お笑い担当として、見る者を確実に抱腹絶倒させるギャグセンスを武器に暴れまわる。
+        ステージの外でもギャップで沼に落とすタイプ。気づいたらファンになっているはず。
+      </p>
+      <a class="line-btn" href="https://line.me/ti/p/HOAKIvlLt6" target="_blank" rel="noopener">さとしっくすとLINEでつながる →</a>
+    </div>
+  </div>
+</section>
+
+<section class="activities" id="activities">
+  <div class="section-head">
+    <span class="scratch">activities</span>
+    <h2>活動実績</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="act-grid">
+    <div class="act-card">
+      <div class="loc">新宿 / LIVE</div>
+      <h3>歌舞伎町タワー前 路上ライブ</h3>
+      <p>新宿のランドマーク、歌舞伎町タワー前にて単独ライブを敢行。
+        足を止めた通行人を巻き込みながら、軍団の存在を新宿の街に刻みつけた。</p>
+    </div>
+    <div class="act-card">
+      <div class="loc">新宿 / DJ</div>
+      <h3>クラブ Warp DJ出演</h3>
+      <p>歌舞伎町の老舗クラブ「Warp」のフロアでDJとして出演。
+        アイドルの枠を超えたプレイで、夜のダンスフロアを鷲掴みにした。</p>
+    </div>
+  </div>
+  <div class="base-bar">
+    <span class="pill">主な拠点：新宿</span>
+    <span class="pill">主な拠点：池袋</span>
+  </div>
+</section>
+
+<section class="upcoming" id="upcoming">
+  <div class="section-head">
+    <span class="scratch">next mission</span>
+    <h2>今後の予定</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="frame">
+    <h3>今秋、池袋西口公園にてライブ開催決定</h3>
+    <p>
+      ふにゃねこ軍団、池袋に進出。今秋、池袋西口公園にて待望のライブを開催予定。
+      日程の続報はSNSにて随時発表していくので見逃さないように。
+    </p>
+    <p>
+      さらに、現在制作中のオリジナル楽曲も初お披露目予定。
+    </p>
+    <span class="song">♪ 「ASAGAO」 — coming soon</span>
+  </div>
+</section>
+
+<section class="sns" id="sns">
+  <div class="section-head">
+    <span class="scratch">follow us</span>
+    <h2>各種リンク</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="sns-grid">
+    <a class="sns-link" href="https://www.youtube.com/@%E3%81%95%E3%81%A8%E3%81%97%E3%81%A3%E3%81%8F%E3%81%99%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB" target="_blank" rel="noopener">
+      <span class="plat">YouTube</span><span class="arrow">↗</span>
+    </a>
+    <a class="sns-link" href="https://twitter.com/sixxx" target="_blank" rel="noopener">
+      <span class="plat">X (Twitter)</span><span class="arrow">↗</span>
+    </a>
+    <a class="sns-link" href="https://www.instagram.com/sixxvision/" target="_blank" rel="noopener">
+      <span class="plat">Instagram</span><span class="arrow">↗</span>
+    </a>
+    <a class="sns-link" href="http://sixxvision.com/" target="_blank" rel="noopener">
+      <span class="plat">さとしっくす 公式サイト</span><span class="arrow">↗</span>
+    </a>
+    <a class="sns-link" href="https://wasedanoteihen.blogspot.com/" target="_blank" rel="noopener">
+      <span class="plat">しゅう 公式ブログ</span><span class="arrow">↗</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span class="scratch">またね、にゃ。</span>
+  © ふにゃねこ軍団 All Rights Reserved.
+</footer>
+
+</body>
+</html>
